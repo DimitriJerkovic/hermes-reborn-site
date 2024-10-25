@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil Hermès Reborn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Style général pour la page d'accueil */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: #0d0d26;
+            color: #ffffff;
+        }
+
+        /* Fond animé */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, #4c3b6e, #533f90, #6a60b1, #7a7ac4);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Conteneur principal */
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 10% auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Logo Hermès Reborn */
+        .logo {
+            width: 250px;
+            margin: 0 auto 50px;
+        }
+
+        /* Titre principal avec dégradé animé et effet shiny */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            font-family: 'Anton', sans-serif;
+            background: linear-gradient(90deg, #4c3b6e, #7e57c2, #d16ba5);
+            background-size: 200% 200%;
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: gradientMove 5s ease infinite, shinyEffect 3s ease infinite;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        /* Animation de dégradé en mouvement */
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Effet shiny (reflet lumineux qui balaie le texte) */
+        @keyframes shinyEffect {
+            0% {
+                background-position: -150%;
+            }
+            50% {
+                background-position: 150%;
+            }
+            100% {
+                background-position: -150%;
+            }
+        }
+
+        /* Effet brillant sur le texte */
+        h1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            height: 100%;
+            width: 150%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transform: skewX(-25deg);
+            animation: shinyEffect 3s infinite;
+        }
+
+        /* Boutons impressionnants */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #7e57c2;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #5f3ca7;
+            transform: scale(1.05);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Styles spécifiques pour les différents boutons */
+        .btn-leadcode {
+            background-color: #d16ba5;
+        }
+
+        .btn-leadcode:hover {
+            background-color: #b15586;
+        }
+
+        .btn-salescode {
+            background-color: #d16ba5;
+        }
+
+        .btn-salescode:hover {
+            background-color: #b15586;
+        }
+
+        .btn-dashboard {
+            background-color: #7e57c2;
+        }
+
+        .btn-dashboard:hover {
+            background-color: #5f3ca7;
+        }
+
+        .btn-active-subs {
+            background-color: #76c7c0;
+        }
+
+        .btn-active-subs:hover {
+            background-color: #5fa5a2;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+
+    <!-- Conteneur principal -->
+    <div class="container">
+        <!-- Logo Hermès Reborn -->
+        <img src="reborn-logo.jpg" alt="Hermès Reborn Logo" class="logo">
+
+        <!-- Titre principal -->
+        <h1>Bienvenue chez Hermès Reborn</h1>
+
+        <!-- Boutons principaux -->
+        <div class="button-container">
+            <a href="leadcode_manager.html" class="btn btn-leadcode">Leadcode Manager</a>
+            <a href="salescode_manager.html" class="btn btn-salescode">Salescode Manager</a>
+            <a href="dashboard_leads.html" class="btn btn-dashboard">Dashboard Leads</a>
+            <a href="dashboard_sales.html" class="btn btn-dashboard">Dashboard Sales</a>
+            <a href="https://nouvelles-perspectives.com/wp-tools/active_subs.php?auth=f12f8e4a10da8940bc9f07145379f924" class="btn btn-active-subs">Active Subs</a>
+        </div>
+    </div>
+</body>
+</html>

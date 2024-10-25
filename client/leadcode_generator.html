@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Leadcode</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Générateur de Leadcode</h1>
+
+        <!-- Section des menus déroulants -->
+        <label for="partnerCode">Code Partenaire :</label>
+        <select id="partnerCode" onchange="updateLeadcode()">
+            <option value="00">00</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+        </select>
+
+        <label for="contactType">Type de Contact :</label>
+        <select id="contactType" onchange="updateLeadcode()">
+            <option value="EML">EMAIL</option>
+            <option value="SMS">SMS</option>
+            <option value="SOC">SOCIAL</option>
+        </select>
+
+        <label for="originNewsletter">Newsletter d'Origine :</label>
+        <select id="originNewsletter" onchange="updateLeadcode()">
+            <option value="EPC">EPC</option>
+            <option value="NYC">NYC</option>
+            <option value="PAR">PAR</option>
+        </select>
+
+        <label for="targetNewsletter">Newsletter Cible :</label>
+        <select id="targetNewsletter" onchange="updateLeadcode()">
+            <option value="AGL">AGL</option>
+            <option value="BLG">BLG</option>
+            <option value="CML">CML</option>
+        </select>
+
+        <!-- Affichage du Leadcode généré en direct -->
+        <h3>Leadcode Généré :</h3>
+        <input type="text" id="generatedLeadcode" readonly>
+
+        <!-- Champ de commentaire -->
+        <label for="comment">Commentaire :</label>
+        <textarea id="comment" placeholder="Ajoutez des remarques ici"></textarea>
+
+        <!-- Bouton de sauvegarde -->
+        <button onclick="saveLeadcode()">Sauvegarder Leadcode</button>
+    </div>
+
+    <script>
+        // Fonction pour mettre à jour le Leadcode en temps réel
+        function updateLeadcode() {
+            const partnerCode = document.getElementById('partnerCode').value;
+            const contactType = document.getElementById('contactType').value;
+            const originNewsletter = document.getElementById('originNewsletter').value;
+            const targetNewsletter = document.getElementById('targetNewsletter').value;
+
+            // Combinaison sans occurrence pour vérification dans le localStorage
+            const baseLeadcode = `${partnerCode}${contactType}${originNewsletter}${targetNewsletter}`;
+
+            // Récupération de l'occurrence
+            let occurrences = JSON.parse(localStorage.getItem('occurrences')) || {};
+            let occurrence = occurrences[baseLeadcode] || 1;
+
+            // Création du Leadcode avec occurrence
+            const leadcode = `${baseLeadcode}${occurrence.toString().padStart(2, '0')}`;
+            document.getElementById('generatedLeadcode').value = leadcode;
+        }
+
+        // Fonction pour sauvegarder le Leadcode avec la date et le commentaire
+        function saveLeadcode() {
+            const leadcode = document.getElementById('generatedLeadcode').value;
+            const comment = document.getElementById('comment').value;
+            const dateCreated = new Date().toLocaleDateString();
+
+            // Sauvegarde dans le localStorage pour affichage ultérieur
+            const leadcodes = JSON.parse(localStorage.getItem('leadcodes')) || [];
+            leadcodes.push({ leadcode, comment, dateCreated });
+            localStorage.setItem('leadcodes', JSON.stringify(leadcodes));
+
+            // Mise à jour de l'occurrence pour ce code
+            let occurrences = JSON.parse(localStorage.getItem('occurrences')) || {};
+            const baseLeadcode = leadcode.slice(0, -2); // Supprime l'occurrence pour la clé
+            occurrences[baseLeadcode] = (occurrences[baseLeadcode] || 1) + 1; // Incrémente l'occurrence
+            localStorage.setItem('occurrences', JSON.stringify(occurrences));
+
+            alert("Leadcode sauvegardé !");
+            updateLeadcode(); // Met à jour l'occurrence pour la prochaine génération
+        }
+    </script>
+</body>
+</html>

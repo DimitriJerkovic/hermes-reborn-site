@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermès Reborn - Gestion des Salescodes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <body>
+        <div class="background-animation">
+            <!-- Particules pour un effet flottant -->
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="container">
+        <h1>Gestion des Salescodes</h1>
+        
+        <!-- Générateur de Salescode -->
+        <section class="generator-section">
+            <h2>Générateur de Salescode</h2>
+            <div class="input-group">
+                <label for="partnerCodeSales">Code Partenaire :</label>
+                <select id="partnerCodeSales" onchange="updateSalescode()">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="contactTypeSales">Type de Contact :</label>
+                <select id="contactTypeSales" onchange="updateSalescode()">
+                    <option value="EML">EMAIL</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="originNewsletterSales">Newsletter d'Origine :</label>
+                <select id="originNewsletterSales" onchange="updateSalescode()">
+                    <option value="EPC">EPC</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="productFunnelSales">Produit/Funnel :</label>
+                <select id="productFunnelSales" onchange="updateSalescode()">
+                    <option value="CDA">CDA</option>
+                </select>
+            </div>
+
+            <!-- Code généré et bouton de sauvegarde centrés -->
+            <div class="generated-section">
+                <h3>Salescode Généré :</h3>
+                <input type="text" id="generatedSalescode" readonly class="output">
+            </div>
+
+            <!-- Champ de commentaire en-dessous des autres champs -->
+            <div class="input-group">
+                <label for="commentSales">Commentaire :</label>
+                <textarea id="commentSales" placeholder="Commentaire"></textarea>
+            </div>
+
+            <!-- Bouton Sauvegarder -->
+            <div class="save-section">
+                <button class="save-btn" onclick="saveSalescode()">Sauvegarder Salescode</button>
+            </div>
+        </section>
+
+        <!-- Liste des Salescodes -->
+        <section class="list-section">
+            <h2>Liste des Salescodes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Salescode</th>
+                        <th>Commentaire</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="salescodeList">
+                    <!-- Contenu dynamique -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Inclusion de script.js -->
+    <script src="script.js"></script>
+</body>
+</html>
